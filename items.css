@@ -1,0 +1,25 @@
+.border {
+    border: red;
+    border-radius: 1px;
+    border-style: solid;
+    margin: 3vh 5vw 3vh 5vw;
+    padding: 10px 50px 30px 50px;
+}
+
+.expand {
+    background-color: white;
+    border-top: 2px solid salmon;
+    border-right: 2px solid salmon;
+    border-left: 2px solid salmon;
+    border-bottom: 2vh solid salmon;
+    position: fixed;
+    z-index: 3;
+    top: 12vh;
+    height: 78vh;
+    width: 80vw;
+    overflow-y: hidden;
+}
+
+.x {
+    display: none;
+}
