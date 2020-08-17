@@ -1,25 +1,231 @@
 .border {
-    border: red;
-    border-radius: 1px;
+    position: relative;
+    background-color: #212121;
+    color: aliceblue;
+    border: #f5466b;
+    border-radius: 10px;
     border-style: solid;
-    margin: 3vh 5vw 3vh 5vw;
-    padding: 10px 50px 30px 50px;
+    margin: 3vh 3vw 3vh 3vw;
+    padding: 10px 10px 10px 10px;
+    width: 180px;
+    height: 50vh;
+    overflow: hidden;
+    border-radius: 20px;
+    z-index: 5;
+    box-shadow: 0px 0px 15px #212121;
+    transition: 0.5s ease-in;
+}
+
+.more-info{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border-radius: 100px;
+}
+
+.border button {
+    background-color: #212121;
+    border-color: #7b89a4;
+    color: aliceblue;
+    border-width: 2px;
+    transition: 0.4s ease;
+}
+
+.border button:hover {
+    background-color: #212121;
+    border-color: #7b89a4;
+    color: #f5466b;
+    border-width: 2px;
+    box-shadow: 0px 0px 5px #212121;
+}
+
+.border.expand button:hover {
+    background-color: #f5466b;
+    border-color: #7b89a4;
+    color: #212121;
+    border-width: 2px;
+    box-shadow: 0px 0px 5px #f5466b;
+}
+
+.border:before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #f5466b;
+    clip-path: circle(100px at 100% 50%);
+    transition: 0.7s ease-in-out;
+    z-index: -1;
+}
+
+.border:hover {
+    border-color: #7b89a4;
+}
+
+.border:hover:before {
+    clip-path: circle(1000px at 75% 40%);
 }
 
 .expand {
-    background-color: white;
-    border-top: 2px solid salmon;
-    border-right: 2px solid salmon;
-    border-left: 2px solid salmon;
-    border-bottom: 2vh solid salmon;
+    background-color: #212121;
+    border-top: 2px solid #f5466b;
+    border-right: 2px solid #f5466b;
+    border-left: 2px solid #f5466b;
+    border-bottom: 2px solid #f5466b;
     position: fixed;
-    z-index: 3;
-    top: 12vh;
-    height: 78vh;
-    width: 80vw;
-    overflow-y: hidden;
+    z-index: 8;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    top: 81px;
+    height: 81vh;
+    width: 70vw;
+    animation: appearing 0.5s ease-in forwards;
+}
+
+.border:hover {
+    border-color: #f5466b;
+}
+
+@keyframes appearing {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: .5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+
+.expand:before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #f5466b;
+    clip-path: circle(150px at 100% 36%);
+}
+
+.expand:hover:before {
+    clip-path: circle(150px at 100% 36%);
 }
 
 .x {
     display: none;
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    justify-content: center;
+    font-size: 1.2rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 1000px;
+}
+
+.border .expand-button {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+}
+
+.item-name {
+    margin-block-start: 0px;
+    font-size: 1.75em;
+    display: flex
+}
+
+.expand .item-name{
+    justify-content: center;
+}
+
+
+.item-price {
+    position: relative;
+    bottom: -250px;
+    transition: 0.5s ease-in;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.border:hover .item-price{
+    bottom: 0px;
+}
+
+.expand .item-price{
+    bottom: 0px;
+}
+
+
+.item-count {
+    position: relative;
+    bottom: -250px;
+    transition: 0.5s ease-in;
+}
+
+.border:hover .item-count{
+    bottom: 0px;
+}
+
+.expand .item-count{
+    bottom: 0px;
+}
+
+.item-description {
+    display: none;
+}
+
+.other-button {
+    margin-top: 5px;
+    position: relative;
+    bottom: -250px;
+    transition: 0.5s ease-in;
+}
+
+.plus-minus{
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+}
+
+.add-to-basket{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border-radius: 100px;
+}
+
+.border:hover .other-button{
+    bottom: 0px;
+}
+
+.expand .other-button{
+    bottom: 0px;
+}
+
+
+.item-image {
+    max-width: 70%;
+    max-height: 65%;
+    z-index: 8;
+}
+
+.expand img{
+    max-height: 40vh;
+    transition: none !important;
+}
+
+.expand:hover img{
+    transform: none !important;
+}
+
+.border img {
+    transition: 0.5s ease-in-out;
+}
+
+.border:hover img{
+    transform: scale(0.95);
 }

@@ -44,7 +44,7 @@ function App() {
     setIsShown(false);
   }
 
-  const handleAddToBasket = (item, price, count) => {
+  const  handleAddToBasket = (item, price, count) => {
     let currentBasket = basket;
     let newBasket;
     newBasket = currentBasket.concat({name: item, price: price, vol: count});
@@ -52,6 +52,7 @@ function App() {
     let newBasketValue = basketValue;
     newBasketValue = newBasketValue + (price * count);
     setBasketValue(newBasketValue);
+    closeItemAlert();
     const newItem = {name: item, price: price, vol: count}
     newItemAlert(newItem);
   }
@@ -108,9 +109,15 @@ function App() {
     } 
   }
 
-  const newItemAlert = (newItem) => {
-  setNewItem(newItem);
+  const newItemAlert = (newlyAddedItem) => {
+  let check = newItem
+  setNewItem(newlyAddedItem);
   setAddedToBasket(true);
+  setTimeout(() => {
+    if ( check === newItem ) {
+      closeItemAlert();
+    }
+  }, 3000);
   }
 
   const closeItemAlert = () => {
@@ -118,44 +125,48 @@ function App() {
   setNewItem([]);
   }
 
+
   return (
     <div className="app">
       <header>
-        <h1>Ecommerce Site</h1>
+        <h1 className="ecommerce">EveryGen</h1>
         {activeBasket !== true
-        ? <div><button onClick={openBasket} 
+        ? <div><button className="basket-button"
+        onClick={openBasket} 
         onMouseEnter={hoverBasket}
-        onMouseLeave={() => setIsShown(false)}><h2>Basket: £{basketValue}</h2></button>
+        onMouseLeave={() => setIsShown(false)}><h2 >Basket:<br />£{basketValue}</h2></button>
         {isShown && (
           <div className='hover-basket'>
             {basket.map(item => (
-            <div>{item.name} x {item.vol}</div> 
+            <div key={item.id}>{item.name} x {item.vol}</div> 
             ))}
           </div>
         )}</div>
         : <>
-          <button onClick={closeBasket}><h2>Back to Shopping</h2></button>
-          <button><h2>Basket: £{basketValue}</h2></button>
+          <button onClick={closeBasket} className="basket-button"><h2>Back to Shopping</h2></button>
+          <button className="basket-button"><h2>Basket: £{basketValue}</h2></button>
           </>
         }
       </header>
 
+    <div className="main-background">
       <div>
       {addedToBasket === false 
       ? <div></div>
       : <div className="new-item-popup">
         <div>you have added a new item!</div>
-        {newItem.name} -- 
+        <div>{newItem.name} -- 
         £{newItem.price}.00 x 
-        {newItem.vol}
-        <button onClick={closeItemAlert}>Close</button>
+        {newItem.vol}</div>
+        <button className="popup-close" onClick={closeItemAlert} >Close</button>
       </div>
       }
       </div>
       
       {activeBasket !== true
       ?
-      <div className='subheader'><h2>Item List</h2>
+      <div className='subheader'><h2>Phones</h2>
+        <p>EveryGen provides brand new iPhones from every generation!</p>
         <div className='grid'>
         {productList.slice(0, 6).map(item => <Items 
         key={item.id} 
@@ -166,7 +177,7 @@ function App() {
         </div>
         <div>
           {moreActive !== true
-          ? <button onClick={openCloseMore} className="more-less">-- More --</button>
+          ? <button onClick={openCloseMore} className="more-less">v  More  v</button>
           : <><div className='grid'>
             {productList.slice(6, 12).map(item => <Items 
             key={item.id} 
@@ -175,12 +186,12 @@ function App() {
             newItem={newItemAlert}
             />)}
           </div>
-          <button onClick={openCloseMore} className="more-less">-- Less --</button>
+          <button onClick={openCloseMore} className="more-less">^ Less ^</button>
           </>
           }
         </div>
       </div>
-       : <Basket 
+       : <Basket
        basket={basket} 
        key={basket.id} 
        basketValue={basketValue} 
@@ -189,10 +200,11 @@ function App() {
        oneLess={oneLess}
        />
       }
+    </div>
       
 
       <footer>
-        <h3>Generic Contact Info</h3>
+        <h3>Designed by Michael Lewis</h3>
       </footer>
     </div>
   );

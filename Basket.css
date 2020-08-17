@@ -9,6 +9,8 @@
     border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
+    justify-content: center;
+    text-align: center;
 }
 
 thead th {
@@ -16,11 +18,33 @@ thead th {
     border-collapse: collapse;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-weight: 700;
+    color: #f5466b;
 }
 
 .basket-text {
     justify-content: center;
     text-align: center;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin: 0px;
+    padding: 25px;
+}
+
+.basket-page {
+    min-height: calc(100vh - 175px);
+  }
+
+.one-more-less{
+    color: black;
+    background-color: #7b89a4;
+    border-color: #f5466b;
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: 0.5s ease;
+}
+
+.one-more-less:hover{
+    color: #f5466b;
+    border-color: #f5466b;
+    box-shadow: 0px 0px 5px #f5466b;
+    background-color: #212121;
 }

@@ -3,17 +3,16 @@ import './Basket.css';
 
 function Basket (props) {
     return( 
-        <div>
+        <div className='basket-page'>
             <h2 className='basket-text'>Your Basket:</h2>
             {props.basket.length !== 0
             ?<div><table className="basket-table">
                 <thead>
                     <tr>
                         <th>Product Name</th>
-                        <th>Amount</th>
+                        <th>Volume</th>
                         <th>Price</th>
-                        <th>One Less</th>
-                        <th>One More</th>
+                        <th>Adjust volume</th>
                         <th>Remove Item</th>
                     </tr>
                 </thead>
@@ -23,9 +22,8 @@ function Basket (props) {
                             <td><b> {item.name} </b></td>
                             <td> {item.vol} </td>
                             <td> £{item.price}.00 </td> 
-                            <td> <button onClick={() => {props.oneLess(item, item.price)} }> -1 </button></td>
-                            <td> <button onClick={() => {props.oneMore(item, item.price)} }> +1 </button></td>
-                            <td> <button onClick={() => {props.removeFromBasket(item, item.price, item.vol)} }>remove</button> </td>
+                            <td> <button className='one-more-less' onClick={() => {props.oneLess(item, item.price)} }> -1 </button><button className='one-more-less' onClick={() => {props.oneMore(item, item.price)} }> +1 </button></td>
+                            <td> <button className='one-more-less' onClick={() => {props.removeFromBasket(item, item.price, item.vol)} }>remove</button> </td>
                         </tr>)
                     )} 
                 </tbody> 
